@@ -1,0 +1,16 @@
+#replace build: ./folder by image: image_name:tag when deploying for real , otherwise people would need to download the entire project
+version: '3.2'
+services:
+    demo-thin-server:
+        build:
+            context: .
+        ports:
+            - "8080:8080"
+    nginx-server:
+        build:
+            context: ./nginx
+        ports:
+            - "443:443"
+        links:
+            - demo-thin-server
+
